@@ -1,8 +1,16 @@
 class SessionsController < ApplicationController
   def create
-    # @user = User.find_or_create_from_auth_hash(auth_hash)
-    abort
-    self.current_user = @user
+    id = auth_hash.uid
+    username = auth_hash.info.nickname
+    image = auth_hash.info.image
+
+    @user = User.find_or_create_by_twitter_id(id)
+    @user.username = username
+    @user.image = image
+    @user.save
+
+    login(@user)
+    
     redirect_to '/'
   end
 
