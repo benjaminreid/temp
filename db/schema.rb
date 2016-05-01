@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160427194042) do
+ActiveRecord::Schema.define(:version => 20160501170536) do
+
+  create_table "pings", :force => true do |t|
+    t.float "lat"
+    t.float "lng"
+  end
 
   create_table "users", :force => true do |t|
     t.string  "username"
